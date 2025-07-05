@@ -1,0 +1,75 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="icon" href="data:">
+<title>IchigoJamの魔法 (stems)</title>
+</head><body>
+<h1>IchigoJamの魔法 (stems)</h1>
+
+hit SPACE KEY to play all stems<br>
+right click to mute a part<br>
+<br>
+
+<main id=main></main>
+
+<hr>
+MUSIC: <a href=/>IchigoJamの魔法</a> (<a href=IchigoJam-Magic.csv>歌詞</a> / <a href=stems.html>パート別</a>) CC BY IchigoJam powered by <a href=https://suno.com/song/f350343a-47fc-4b77-8ae2-a3966e79fa2a>SUNO</a><br>
+<a href=https://github.com/IchigoJam/IchigoJam-Magic/>src on GitHub</a><br>
+
+<!--
+<input type="file" id="fileInput">
+-->
+
+<script type="module">
+import { unzip } from "https://taisukef.github.io/zlib.js/es/unzip.js";
+import { WaveViewer } from "https://code4fukui.github.io/wave-viewer/wave-viewer.js";
+
+const viewer = document.querySelector('wave-viewer');
+
+/*
+const input = document.getElementById('fileInput');
+
+input.addEventListener('change', e => {
+  const file = e.target.files[0];
+  if (file) viewer.load(file);
+});
+*/
+
+const bin = await (await fetch("./IchigoJam-Magic_Stems.zip")).bytes();
+const zips = unzip(bin);
+const filenames = zips.getFilenames();
+for (const fn of filenames) {
+  const wav = zips.decompress(fn);
+  console.log(fn, wav.length);
+
+  const div = document.createElement("div");
+  div.textContent = fn;
+  main.appendChild(div);
+
+  const viewer = new WaveViewer(); 
+  viewer.load(wav);
+  main.appendChild(viewer);
+}
+
+
+</script>
+
+<style>
+body {
+  font-family: sans-serif;
+  text-align: center;
+}
+a {
+  color: gray;
+}
+wave-viewer {
+  display: block;
+  width: 100%;
+  border: 1px solid #ccc;
+}
+#div_lyric {
+  text-align: center;
+  padding: 1vw;
+  height: 1.5em;
+  font-size: 6vw;
+}
+</style>
+
+</body></html>
