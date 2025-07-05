@@ -1,6 +1,6 @@
 # IchigoJam music
 
-- [IchigoJamの魔法](https://ichigojam.github.io/IchigoJam-music/) ([STEMS]https://ichigojam.github.io/IchigoJam-music/stems.html) CC BY IchigoJam
+- [IchigoJamの魔法](https://ichigojam.github.io/IchigoJam-music/) ([STEMS](https://ichigojam.github.io/IchigoJam-music/stems.html)) CC BY IchigoJam
 
 ## reference
 
